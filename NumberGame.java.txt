@@ -1,0 +1,94 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class NumberGame 
+{
+public int Num,n;
+
+    public void RandomNum()
+    {
+        Guess(Num,n);   
+    }
+    public void Guess(int Num,int n) 
+    {
+        
+        Scanner sc = new Scanner(System.in);
+        
+            System.out.println("-->>Guess the number between 0-"+n);
+            
+            int Num2 = sc.nextInt();
+
+            // Check if the number is between 0-n or not
+            while (Num2 < 0 || Num2 > n) {
+                System.out.println("-->>Guess the number between 0-"+n);
+                Num2 = sc.nextInt();
+            }
+
+            int tries = 0;
+            while (Num2 != Num) {
+                tries++;
+                System.out.println("Wrong Guess !!!");
+                if (Num > Num2) {
+                    System.out.println("Hint: The Number is greater than "+Num2);
+                } else {
+                    System.out.println("Hint: The Number is smaller than "+Num2);
+                }
+                System.out.println("Guess again --> ");
+                Num2 = sc.nextInt();
+
+                // Check if the number is between 0-n or not
+                while (Num2 < 0 || Num2 > n) {
+                    System.out.println("-->>Guess the number between 0-"+n);
+                    Num2 = sc.nextInt();
+                }
+            }
+
+            System.out.println("Congractulations... You guessed it Right ");
+            System.out.println("-->>Your Score is:" + tries);
+    }
+    
+    
+    public static void main(String[] args) {
+    NumberGame g = new NumberGame();
+    Scanner sc = new Scanner(System.in);
+    
+    
+    int ch;
+    
+    do {
+        System.out.println("\t\tNUMBER GAME");
+        System.out.println("Select Mode: 1.Easy\t2.Medium\t3.Hard");
+        int mode = sc.nextInt();
+        
+        switch (mode) {
+            case 1: {
+                Random ran = new Random();
+                int n = 10;
+                int Num = ran.nextInt(11);
+                g.Guess(Num, n);
+                break;
+            }
+            case 2: {
+                Random ran = new Random();
+                int n = 50;
+                int Num = ran.nextInt(51);
+                g.Guess(Num, n);
+                break;
+            }
+            case 3: {
+                Random ran = new Random();
+                int n = 100;
+                int Num = ran.nextInt(101);
+                g.Guess(Num, n);
+                break;
+            }
+        }
+        
+        System.out.println("Press 1 to play again or 0 to exit.");
+        ch = sc.nextInt();
+    } while (ch == 1);
+
+    System.out.println("Thank you! Well Played");
+}
+        
+}
